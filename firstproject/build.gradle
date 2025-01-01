@@ -1,0 +1,38 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.1.0'
+	id 'io.spring.dependency-management' version '1.1.6'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(21) // Java 21 사용
+	}
+}
+
+repositories {
+	mavenCentral() // Maven Central 저장소 사용
+}
+
+dependencies {
+	// Spring Boot 관련 의존성
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa' // JPA 및 Hibernate 지원
+	implementation 'org.springframework.boot:spring-boot-starter-web' // REST API 및 웹 애플리케이션
+	implementation 'org.springframework.boot:spring-boot-starter-mustache' // Mustache 템플릿 엔진
+
+	// 데이터베이스 드라이버
+	runtimeOnly 'com.mysql:mysql-connector-j'
+	// Oracle 드라이버 (필요 없다면 삭제 가능)
+	runtimeOnly 'com.oracle.database.jdbc:ojdbc11'
+
+	// 테스트 관련 의존성
+	testImplementation 'org.springframework.boot:spring-boot-starter-test' // JUnit 및 테스트 도구
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher' // 테스트 실행기
+}
+
+tasks.named('test') {
+	useJUnitPlatform() // JUnit 5 사용
+}
