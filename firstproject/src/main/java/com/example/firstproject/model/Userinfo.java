@@ -1,9 +1,6 @@
 package com.example.firstproject.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
@@ -11,7 +8,7 @@ import java.time.LocalDate;
 @Table(name = "userinfo")
 public class Userinfo {
     @Id
-    @Column(name = "userId", nullable = false, length = 25)
+    @Column(name = "user_id", nullable = false, length = 25)
     private String userId;
 
     @Column(name = "weight")
@@ -32,12 +29,17 @@ public class Userinfo {
     @Column(name = "day")
     private Integer day;
 
-    public String getUserId() {
-        return userId;
+    @MapsId
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "user_id", nullable = false)
+    private Userlist userlist;
+
+    public Userlist getUserlist() {
+        return userlist;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setUserlist(Userlist userlist) {
+        this.userlist = userlist;
     }
 
     public Float getWeight() {

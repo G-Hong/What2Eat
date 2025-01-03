@@ -24,6 +24,18 @@ public class Graph {
     @Column(name = "muscleMass")
     private Float muscleMass;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private Userlist user;
+
+    public Userlist getUser() {
+        return user;
+    }
+
+    public void setUser(Userlist user) {
+        this.user = user;
+    }
+
     public Integer getId() {
         return id;
     }
