@@ -1,9 +1,8 @@
 package com.example.firstproject.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "userlist")
@@ -11,6 +10,9 @@ public class Userlist {
     @Id
     @Column(name = "user_id", nullable = false, length = 25)
     private String userId;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Graph> graphs;
 
     public String getUserId() {
         return userId;
@@ -20,4 +22,11 @@ public class Userlist {
         this.userId = userId;
     }
 
+    public List<Graph> getGraphs() {
+        return graphs;
+    }
+
+    public void setGraphs(List<Graph> graphs) {
+        this.graphs = graphs;
+    }
 }

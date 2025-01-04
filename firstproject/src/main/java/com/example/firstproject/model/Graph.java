@@ -1,6 +1,8 @@
 package com.example.firstproject.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnore; // 올바른 패키지
 
 import java.time.LocalDate;
 
@@ -18,14 +20,15 @@ public class Graph {
     @Column(name = "weight")
     private Float weight;
 
-    @Column(name = "bodyMass")
+    @Column(name = "body_mass")
     private Float bodyMass;
 
-    @Column(name = "muscleMass")
+    @Column(name = "muscle_mass")
     private Float muscleMass;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) // Lazy 로딩 문제 방지
     private Userlist user;
 
     public Userlist getUser() {
