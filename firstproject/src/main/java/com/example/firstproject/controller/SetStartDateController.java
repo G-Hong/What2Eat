@@ -1,39 +1,42 @@
 package com.example.firstproject.controller;
 
-import com.example.firstproject.model.Graph;
+import com.example.firstproject.model.Userinfo;
 import com.example.firstproject.model.Userlist;
-import com.example.firstproject.service.GraphService;
+import com.example.firstproject.service.UserService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.Map;
 
 @RestController
 public class SetStartDateController {
 
-    private GraphService graphService;
+    private UserService userService;
 
-    public SetStartDateController(GraphService graphService) {
-        this.graphService = graphService;
+    public SetStartDateController(UserService userService) {
+        this.userService = userService;
     }
 
     @PostMapping("/api/user/SetStart-date")
-    public void setStartDate(@RequestBody Map<String, Object> requestData) {
+    public Map<String, String> setStartDate(@RequestBody Map<String, Object> requestData) {
 
         String userId = requestData.get("id").toString();
         LocalDate startDate = LocalDate.parse(requestData.get("date").toString());  // 프론트에서 전달된 "date"를 LocalDate로 파싱
 
-        Graph newGraph = new Graph();
-
+        //시작일은 처음 한번만 설정 가능
         Userlist userlist = new Userlist();
+        Userinfo newUserInfo = new Userinfo();
+
         userlist.setUserId(userId);
+        newUserInfo.setUserlist(userlist);
+        newUserInfo.setStartDate(startDate);
 
-        newGraph.setUser(userlist);
-        newGraph.setDate(startDate);
-
-        graphService.setStartDate(newGraph);
-
+        String insertId = userService.setStartDate(newUserInfo).getUserlist().getUserId();
+        Map<String, String> response = new HashMap<>();
+        response.put("setStartId", insertId);
+        return response;
     }
 }
