@@ -1,24 +1,26 @@
 package com.example.firstproject.controller;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
-import java.util.HashMap;
-import java.util.Map;
+import com.example.firstproject.DTO.ChatResponse;
+import com.example.firstproject.service.ChatService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
+@RequestMapping("/api/chat")
 public class ChatController {
 
-    @PostMapping("/api/user/chatbot")
-    public Map<String, Object> chat(@RequestBody Map<String, String> requestData){
+    private final ChatService chatService;
 
-        String message = requestData.get("message");
-        Object answer = "thank you";   //인공지능 파트 호출해서 답변 얻기
+    @Autowired
+    public ChatController(ChatService chatService) {
+        this.chatService = chatService;
+    }
 
-        Map<String, Object> response = new HashMap<>();
-        response.put("success", answer);
-
-        return response;
+    @PostMapping
+    public ResponseEntity<ChatResponse> chat(@RequestBody String question) {
+        ChatResponse response = chatService.getAnswer(question);
+        return ResponseEntity.ok(response);
     }
 }

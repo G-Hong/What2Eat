@@ -31,6 +31,7 @@ dependencies {
 	// 테스트 관련 의존성
 	testImplementation 'org.springframework.boot:spring-boot-starter-test' // JUnit 및 테스트 도구
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher' // 테스트 실행기
+	implementation 'org.springframework.boot:spring-boot-starter-webflux'
 }
 
 tasks.named('test') {
