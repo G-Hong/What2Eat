@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/user")
@@ -13,10 +14,10 @@ public class GraphController {
     @Autowired
     private GraphService graphService;
 
-    @GetMapping("/set/goal")
+    /*@GetMapping("/set/goal")
     public Graph getUserGoal(@RequestParam String userId) {
         return graphService.getUserGoal(userId);
-    }
+    }*/
 
     @PostMapping("/set/record")
     public Graph addGraphRecord(@RequestBody Graph graph) {

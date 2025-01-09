@@ -18,10 +18,10 @@ public class GraphService {
     private UserlistRepository userlistRepository; // Userlist 검증을 위해 추가
 
 
-    public Graph getUserGoal(String userId) {
+    /*public Graph getUserGoal(String userId) {
         return graphRepository.findTopByUser_UserIdOrderByDateDesc(userId)
                 .orElseThrow(() -> new RuntimeException("User goal not found for userId: " + userId));
-    }
+    }*/
 
     public Graph addGraphRecord(Graph graph) {
         // 1. user 필드와 userId 검증

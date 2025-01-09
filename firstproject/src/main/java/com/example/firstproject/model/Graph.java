@@ -1,5 +1,6 @@
 package com.example.firstproject.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import com.fasterxml.jackson.annotation.JsonIgnore; // 올바른 패키지
@@ -28,7 +29,7 @@ public class Graph {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) // Lazy 로딩 문제 방지
+    @JsonBackReference // 반대쪽 참조 필드로 직렬화 제외
     private Userlist user;
 
     public Userlist getUser() {
