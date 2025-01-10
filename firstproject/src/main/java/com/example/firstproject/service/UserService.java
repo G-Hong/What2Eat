@@ -1,6 +1,7 @@
 package com.example.firstproject.service;
 
 import com.example.firstproject.model.Userinfo;
+import com.example.firstproject.model.Userlist;
 import com.example.firstproject.repository.UserInfoRepository;
 import com.example.firstproject.repository.UserlistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,22 +19,33 @@ public class UserService {
     private UserInfoRepository userInfoRepository;
 
     //로그인
-    public boolean existsByUserId(String userId){
-        boolean exist = userlistRepository.existsById(userId);
+    public String existsUser(String userId, String passwd) {
+        String loginMessage = "";
+        Userlist loginUserList = userlistRepository.getByUserId(userId);
 
-        if(exist){
-            Userinfo existUser = userInfoRepository.getByUserId(userId);
-            int day = existUser.calculateDay();
+        if (loginUserList != null) {
+            if (loginUserList.getPasswd().equals(passwd)) {
 
-            if(day>0){
-                existUser.setDay(day);
+                loginMessage = "login success" ;
+                Userinfo existUser = userInfoRepository.getByUserId(userId);
+                int day = existUser.calculateDay();
+
+                if (day > 0) {
+                    existUser.setDay(day);
+                } else {
+                    existUser.setDay(0);
+                }
+
+                userInfoRepository.save(existUser);
             }
-            else{   //시작 날짜 아직 설정x 며칠차 -> 0일
-                existUser.setDay(0);
+            else{
+                loginMessage = "비밀번호가 일치하지 않습니다.";
             }
-            userInfoRepository.save(existUser);
+        } else {
+            loginMessage = "일치하는 아이디가 없습니다.";
         }
-        return exist;
+
+        return loginMessage;
     }
 
     //시작일 설정

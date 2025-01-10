@@ -1,6 +1,8 @@
 package com.example.firstproject.controller;
 
 import com.example.firstproject.service.UserService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,16 +20,26 @@ public class LoginController {
     }
 
     @PostMapping("/api/login")
-    public Map<String, Object> login(@RequestBody Map<String, String> requestData) {
-        String id = requestData.get("id"); // JSON 데이터에서 "id" 추출
-        Boolean exist = userService.existsByUserId(id);
+    public ResponseEntity<Map<String, Object>> login(@RequestBody Map<String, String> requestData) {
+        String id = requestData.get("id");
+        String password = requestData.get("password");
 
-        Map<String, Object> response = new HashMap<>();
-        response.put("success", exist);
-
-        if (!exist) {
-            response.put("errorMessage", "일치하는 아이디가 존재하지 않습니다.");
+        if (id == null || id.trim().isEmpty() || password == null || password.trim().isEmpty()) {
+            Map<String, Object> errorResponse = new HashMap<>();
+            errorResponse.put("error", "아이디와 비밀번호는 필수 입력 값입니다.");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
         }
-        return response;
+        String loginMessage = userService.existsUser(id, password);
+
+        if ("login success".equals(loginMessage)) {
+            Map<String, Object> response = new HashMap<>();
+            response.put("login", "success");
+            return ResponseEntity.ok(response); // 200 OK
+        } else {
+            Map<String, Object> response = new HashMap<>();
+            response.put("error", loginMessage);
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response); // 401 Unauthorized
+        }
     }
+
 }
