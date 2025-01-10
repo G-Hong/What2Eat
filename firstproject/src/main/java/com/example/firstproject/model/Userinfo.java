@@ -3,6 +3,7 @@ package com.example.firstproject.model;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 @Entity
 @Table(name = "userinfo")
@@ -57,4 +58,9 @@ public class Userinfo {
         this.day = day;
     }
 
+    //며칠차인지 계산
+    public int calculateDay() {
+        int day=  (int) ChronoUnit.DAYS.between(this.startDate, LocalDate.now());
+        return day;
+    }
 }

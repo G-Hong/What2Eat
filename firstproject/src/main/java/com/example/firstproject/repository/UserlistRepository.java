@@ -5,5 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserlistRepository extends JpaRepository<Userlist, String> {
 
-    public boolean existsByUserId(String userId);
+    boolean existsByUserId(String userId);
+    Userlist getByUserId(String userId);
 }
