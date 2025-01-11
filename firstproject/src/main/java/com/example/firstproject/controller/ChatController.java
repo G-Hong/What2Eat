@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping("/api/chat")
 public class ChatController {
@@ -19,8 +21,9 @@ public class ChatController {
     }
 
     @PostMapping
-    public ResponseEntity<ChatResponse> chat(@RequestBody String question) {
-        ChatResponse response = chatService.getAnswer(question);
+    public ResponseEntity<ChatResponse> chat(@RequestBody Map<String, String> payload) {
+        String content = payload.get("content"); // content만 추출
+        ChatResponse response = chatService.getAnswer(content);
         return ResponseEntity.ok(response);
     }
 }
