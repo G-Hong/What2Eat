@@ -2,19 +2,22 @@
 package com.example.firstproject.DTO;
 
 public class ChatRequest {
-    private String question;
+    private String content;
 
+    // 기본 생성자
     public ChatRequest() {}
 
-    public ChatRequest(String question) {
-        this.question = question;
+    // 생성자
+    public ChatRequest(String content) {
+        this.content = content;
     }
 
-    public String getQuestion() {
-        return question;
+    // Getter 및 Setter
+    public String getContent() {
+        return content;
     }
 
-    public void setQuestion(String question) {
-        this.question = question;
+    public void setContent(String content) {
+        this.content = content;
     }
 }
