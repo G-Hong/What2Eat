@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/api/user")
 public class GraphController {
     @Autowired
@@ -20,9 +20,10 @@ public class GraphController {
     }*/
 
     @PostMapping("/set/record")
-    public Graph addGraphRecord(@RequestBody Graph graph) {
-        return graphService.addGraphRecord(graph);
-    }
+//    public Graph addGraphRecord(@RequestBody Graph graph) {
+//        graphService.addGraphRecord(graph);
+//        return graphService.getAllUserRecords()
+//    }
 
     @GetMapping("/modify/me")
     public List<Graph> getAllUserRecords(@RequestParam String userId) {

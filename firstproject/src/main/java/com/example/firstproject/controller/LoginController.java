@@ -19,7 +19,7 @@ public class LoginController {
         this.userService = userService;
     }
 
-    @PostMapping("/api/login")
+    @PostMapping("/login")
     public ResponseEntity<Map<String, Object>> login(@RequestBody Map<String, String> requestData) {
         String id = requestData.get("id");
         String password = requestData.get("password");
@@ -33,6 +33,7 @@ public class LoginController {
 
         if ("login success".equals(loginMessage)) {
             Map<String, Object> response = new HashMap<>();
+
             response.put("login", "success");
             return ResponseEntity.ok(response); // 200 OK
         } else {
