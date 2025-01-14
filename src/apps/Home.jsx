@@ -38,7 +38,7 @@ const Home = () => {
               (e.target.style.backgroundColor = 'rgb(221,235,200)')
             }
           >
-            로그인
+            Log In
           </button>
           <button
             onClick={() => navigate('/signup')}
@@ -58,7 +58,7 @@ const Home = () => {
               (e.target.style.backgroundColor = 'rgb(221,235,200)')
             }
           >
-            회원가입
+            Sign In
           </button>
         </div>
       </div>

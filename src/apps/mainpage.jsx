@@ -4,20 +4,23 @@ import { Link } from 'react-router-dom';
 const MainPage = () => {
   return (
     <div className="min-h-screen flex flex-col items-center p-6 space-y-8" style={{ backgroundColor: 'rgb(249, 251, 242)' }}>
-      {/* 현재 체중 및 진행 상태 */}
-      <section className="w-full max-w-md shadow-lg rounded-lg p-6 text-center" style={{ backgroundColor: 'rgb(249,251,242)' }}>
-        <p className="text-lg text-gray-700">
-          현재 체중: <strong className="text-xl text-black">50kg</strong>
-        </p>
-        <p className="mt-2 text-gray-500">현재 2단계 4일차 진행중</p>
-      </section>
-
-      {/* 메인 카드 */}
-      <section className="w-full max-w-md shadow-lg rounded-lg p-6 text-center" style={{ backgroundColor: 'rgb(221,235,200)' }}>
+       {/* 메인 카드 */}
+       <section className="w-full max-w-md shadow-lg rounded-lg p-6 text-center" style={{ backgroundColor: 'rgb(221,235,200)' }}>
         <h2 className="text-2xl font-bold text-green-600">희재 님</h2>
         <p className="text-lg font-medium text-gray-700 mt-2">D + 12</p>
         <p className="text-sm text-gray-500 mt-1">2단계 4일차 진행중</p>
       </section>
+
+      {/* 현재 체중 및 진행 상태 */}
+      <section className="w-full max-w-md shadow-lg rounded-lg p-6 text-center" style={{ backgroundColor: 'rgb(249,251,242)' }}>
+        <p className="text-lg text-gray-700">
+          현재 체중: <strong className="text-xl text-black">55kg</strong>
+        </p>
+        <p className="mt-2 text-gray-500">
+          목표 체중: <strong className="text-xl text-black">50kg</strong>
+        </p>
+      </section>
+
 
       {/* 차트 영역 */}
       <section className="w-full max-w-md shadow-lg rounded-lg p-6 flex items-center justify-center" style={{ backgroundColor: 'rgb(249,251,242)' }}>

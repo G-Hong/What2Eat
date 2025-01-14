@@ -43,11 +43,11 @@ const Login = () => {
       <Header />
       <div className="flex flex-1 justify-center items-center">
         <div className="p-8 max-w-sm w-full">
-          <h2 className="text-center text-2xl font-bold text-gray-800 mb-6">로그인</h2>
+          <h2 className="text-center text-2xl font-bold text-gray-800 mb-6">Log In</h2>
           {errorMessage && (
             <p className="text-center text-red-500 mb-4">{errorMessage}</p>
           )}
-          <form onSubmit={handleSubmit}> {/* handleSubmit 함수 연결 */}
+          <form onSubmit={handleSubmit}> 
             <div className="mb-4">
               <label
                 htmlFor="userId"
@@ -82,7 +82,7 @@ const Login = () => {
                 style={{ backgroundColor: 'rgb(249,251,242)' }}
               />
             </div>
-            <div className="mt-6"> {/* 버튼 위치 조정을 위해 추가 */}
+            <div className="mt-6">
               <button
                 type="submit"
                 className="w-full text-black font-medium py-2 rounded-lg hover:bg-green-500 transition"
