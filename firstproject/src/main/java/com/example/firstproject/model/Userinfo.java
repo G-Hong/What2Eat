@@ -26,6 +26,28 @@ public class Userinfo {
     @JoinColumn(name = "user_id", nullable = false)
     private Userlist userlist;
 
+    @Column(name = "goal")
+    private Float goal;
+
+    @Column(name = "step_day")
+    private Integer stepDay;
+
+    public Integer getStepDay() {
+        return stepDay;
+    }
+
+    public void setStepDay(Integer stepDay) {
+        this.stepDay = stepDay;
+    }
+
+    public Float getGoal() {
+        return goal;
+    }
+
+    public void setGoal(Float goal) {
+        this.goal = goal;
+    }
+
     public Userlist getUserlist() {
         return userlist;
     }
@@ -63,4 +85,36 @@ public class Userinfo {
         int day=  (int) ChronoUnit.DAYS.between(this.startDate, LocalDate.now());
         return day;
     }
+    //몇단계인지 계산
+    public int calculateStep(){
+
+        int day = this.day;
+
+        if(1<=day && day<=3){
+            this.stepDay = day;
+            this.step = 1;
+        }
+        else if(day<=7){
+            this.stepDay = day-3;
+            this.step = 2;
+        }
+        else if(day<=14){
+            this.stepDay = day-7;
+            this.step = 3;
+        }
+        else if(day<=21){
+            this.stepDay = day-14;
+            this.step = 4;
+        }
+        else if(day<=28){
+            this.stepDay = day-21;
+            this.step = 5;
+        }
+        else {
+            this.stepDay = 0;
+            this.step = 0;
+        }
+        return this.step;
+    }
+
 }

@@ -35,7 +35,7 @@ public class UserService {
                 } else {
                     existUser.setDay(0);
                 }
-
+                existUser.setStep(existUser.calculateStep());
                 userInfoRepository.save(existUser);
             }
             else{
@@ -54,6 +54,11 @@ public class UserService {
         userInfo.setStartDate(startDate);
         //설정된 시작일로 부터 며칠차 계산
         userInfo.setDay(userInfo.calculateDay());
+
         return userInfoRepository.save(userInfo).getUserlist().getUserId();
+    }
+
+    public Userinfo getUserInfo(String userId) {
+        return userInfoRepository.getByUserId(userId);
     }
 }
