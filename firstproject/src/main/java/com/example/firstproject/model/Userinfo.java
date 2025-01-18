@@ -32,6 +32,14 @@ public class Userinfo {
     @Column(name = "step_day")
     private Integer stepDay;
 
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
     public Integer getStepDay() {
         return stepDay;
     }

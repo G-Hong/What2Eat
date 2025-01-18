@@ -21,9 +21,14 @@ public class ChatController {
     }
 
     @PostMapping
-    public ResponseEntity<ChatResponse> chat(@RequestBody Map<String, String> payload) {
-        String content = payload.get("content"); // content만 추출
-        ChatResponse response = chatService.getAnswer(content);
+    public ResponseEntity<ChatResponse> chat(@RequestBody Map<String, Object> payload) {
+        String content = (String) payload.get("content"); // content 추출
+        String userId = (String) payload.get("user_id"); // user_id 추출
+
+        // payload를 그대로 Service로 전달
+        ChatResponse response = chatService.getAnswer(content, userId);
+
+        // 응답 반환
         return ResponseEntity.ok(response);
     }
 }
