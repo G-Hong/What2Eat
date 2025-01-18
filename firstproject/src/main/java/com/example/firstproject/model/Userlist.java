@@ -16,7 +16,7 @@ public class Userlist {
     private String passwd;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval =true, fetch = FetchType.LAZY)
-    @JsonManagedReference // 순환 참조 방지
+    //@JsonManagedReference // 순환 참조 방지
     private List<Graph> graphs;
 
     public String getUserId() {

@@ -19,18 +19,19 @@ public class GraphController {
         return graphService.getUserGoal(userId);
     }*/
 
-    @PostMapping("/set/record")
+//    @PostMapping("/set/record")
 //    public Graph addGraphRecord(@RequestBody Graph graph) {
 //        graphService.addGraphRecord(graph);
 //        return graphService.getAllUserRecords()
 //    }
 
-    @GetMapping("/user/modify/me")
+    @GetMapping("/modify/me")
     public List<Graph> getAllUserRecords(@RequestParam String userId) {
+        System.out.println("Received request for userId: " + userId);
         return graphService.getAllUserRecords(userId);
     }
 
-    @PutMapping("/user/modify/record/{id}")
+    @PutMapping("/modify/record/{id}")
     public String updateGraphRecord(@PathVariable Integer id, @RequestBody Graph updatedGraph) {
         graphService.updateGraphRecord(id, updatedGraph);
         return "{\"message\": \"User record updated successfully.\"}";

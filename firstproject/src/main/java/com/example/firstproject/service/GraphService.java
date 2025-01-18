@@ -40,6 +40,12 @@ public class GraphService {
     }
 
     public List<Graph> getAllUserRecords(String userId) {
+        // userlist 테이블에서 user_id 존재 여부 확인
+        if (!userlistRepository.existsById(userId)) {
+            throw new IllegalArgumentException("User with userId '" + userId + "' does not exist.");
+        }
+
+        // graph 테이블에서 user_id로 데이터 조회
         return graphRepository.findByUser_UserId(userId);
     }
 

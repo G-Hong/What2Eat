@@ -28,7 +28,7 @@ public class Graph {
     private Float muscleMass;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id", nullable = false)
     @JsonBackReference // 반대쪽 참조 필드로 직렬화 제외
     private Userlist user;
 
