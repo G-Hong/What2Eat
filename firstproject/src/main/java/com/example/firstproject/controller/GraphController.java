@@ -8,22 +8,17 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
-@RequestMapping("/api/user")
+@CrossOrigin(origins = "http://localhost:5175")
+@RequestMapping("/user")
 public class GraphController {
     @Autowired
     private GraphService graphService;
 
-    /*@GetMapping("/set/goal")
-    public Graph getUserGoal(@RequestParam String userId) {
-        return graphService.getUserGoal(userId);
-    }*/
-
-//    @PostMapping("/set/record")
-//    public Graph addGraphRecord(@RequestBody Graph graph) {
-//        graphService.addGraphRecord(graph);
-//        return graphService.getAllUserRecords()
-//    }
+    @PostMapping("/set/record")
+    public List<Graph> addGraphRecord(@RequestBody Graph graph) {
+        graphService.addGraphRecord(graph);
+        return graphService.getAllUserRecords(graph.getUser().getUserId());
+    }
 
     @GetMapping("/modify/me")
     public List<Graph> getAllUserRecords(@RequestParam String userId) {

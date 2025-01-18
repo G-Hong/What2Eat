@@ -45,8 +45,7 @@ public class GraphService {
             throw new IllegalArgumentException("User with userId '" + userId + "' does not exist.");
         }
 
-        // graph 테이블에서 user_id로 데이터 조회
-        return graphRepository.findByUser_UserId(userId);
+        return graphRepository.findAllByUser_UserIdOrderByDateAsc(userId);
     }
 
     public Graph updateGraphRecord(Integer id, Graph updatedGraph) {

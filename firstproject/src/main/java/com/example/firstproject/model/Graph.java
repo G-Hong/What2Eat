@@ -1,9 +1,7 @@
 package com.example.firstproject.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-import com.fasterxml.jackson.annotation.JsonIgnore; // 올바른 패키지
 
 import java.time.LocalDate;
 
@@ -79,5 +77,7 @@ public class Graph {
     public void setMuscleMass(Float muscleMass) {
         this.muscleMass = muscleMass;
     }
+
+
 
 }
