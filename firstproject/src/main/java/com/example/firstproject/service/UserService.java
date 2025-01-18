@@ -61,4 +61,11 @@ public class UserService {
     public Userinfo getUserInfo(String userId) {
         return userInfoRepository.getByUserId(userId);
     }
+
+    public Userlist createUserlist(Userlist userlist) {
+        return userlistRepository.save(userlist);
+    }
+    public Userinfo createUserInfo(Userinfo userinfo) {
+        return userInfoRepository.save(userinfo);
+    }
 }

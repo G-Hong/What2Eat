@@ -1,5 +1,6 @@
 package com.example.firstproject.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -23,6 +24,7 @@ public class Userinfo {
 
     @MapsId
     @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JsonIgnore
     @JoinColumn(name = "user_id", nullable = false)
     private Userlist userlist;
 
