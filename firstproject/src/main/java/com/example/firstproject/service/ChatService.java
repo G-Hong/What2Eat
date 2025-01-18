@@ -11,7 +11,7 @@ public class ChatService {
 
     public ChatService(WebClient.Builder webClientBuilder) {
         this.webClient = webClientBuilder
-                .baseUrl("https://8deb-34-16-195-195.ngrok-free.app/") // FastAPI Public URL
+                .baseUrl("https://a312-34-59-30-91.ngrok-free.app/") // FastAPI Public URL
                 .build();
     }
 

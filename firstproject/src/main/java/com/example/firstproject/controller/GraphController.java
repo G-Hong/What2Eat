@@ -25,12 +25,12 @@ public class GraphController {
 //        return graphService.getAllUserRecords()
 //    }
 
-    @GetMapping("/modify/me")
+    @GetMapping("/user/modify/me")
     public List<Graph> getAllUserRecords(@RequestParam String userId) {
         return graphService.getAllUserRecords(userId);
     }
 
-    @PutMapping("/modify/record/{id}")
+    @PutMapping("/user/modify/record/{id}")
     public String updateGraphRecord(@PathVariable Integer id, @RequestBody Graph updatedGraph) {
         graphService.updateGraphRecord(id, updatedGraph);
         return "{\"message\": \"User record updated successfully.\"}";

@@ -6,7 +6,7 @@ import com.example.firstproject.service.GraphService;
 import com.example.firstproject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -18,12 +18,12 @@ public class UserInfoController {
     @Autowired
     UserService userService;
 
-    @GetMapping("/user/main/state")
-    public Userinfo UserInfo(@RequestParam String id){
+    @GetMapping("/user/mypage/user-record/{id}")
+    public Userinfo UserInfo(@PathVariable String id){
         return userService.getUserInfo(id);
     }
-    @GetMapping("/user/main/graph")
-    public List<Graph> UserGraph(@RequestParam String id){
+    @GetMapping("/user/mypage/graph-records/{id}")
+    public List<Graph> UserGraph(@PathVariable String id){
         return graphService.getAllUserRecords(id);
     }
 }
