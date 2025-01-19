@@ -100,7 +100,11 @@ public class Userinfo {
 
         int day = this.day;
 
-        if(1<=day && day<=3){
+        if(day<=0){
+            this.step = 0;
+            this.stepDay = 0;
+        }
+        else if(1<=day && day<=3){
             this.stepDay = day;
             this.step = 1;
         }
@@ -115,10 +119,6 @@ public class Userinfo {
         else if(day<=21){
             this.stepDay = day-14;
             this.step = 4;
-        }
-        else if(day<=28){
-            this.stepDay = day-21;
-            this.step = 5;
         }
         else {
             this.stepDay = 0;
