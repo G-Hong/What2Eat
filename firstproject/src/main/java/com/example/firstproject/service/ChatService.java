@@ -1,6 +1,5 @@
 package com.example.firstproject.service;
 
-import com.example.firstproject.DTO.ChatRequest;
 import com.example.firstproject.DTO.ChatResponse;
 import com.example.firstproject.model.Userinfo;
 import com.example.firstproject.repository.UserInfoRepository;
@@ -16,7 +15,7 @@ public class ChatService {
 
     public ChatService(WebClient.Builder webClientBuilder,UserInfoRepository userInfoRepository) {
         this.webClient = webClientBuilder
-                .baseUrl("https://32d6-34-59-30-91.ngrok-free.app/") // FastAPI Public URL
+                .baseUrl("https://ba27-34-73-138-234.ngrok-free.app/") // FastAPI Public URL
                 .build();
         this.userInfoRepository = userInfoRepository;
     }

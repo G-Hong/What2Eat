@@ -83,12 +83,11 @@ public class UserService {
                 .orElseThrow(() -> new IllegalStateException("사용자 정보를 찾을 수 없습니다."));
     }
 
-    // Userlist 생성
+    // 회원가입
     public Userlist createUserlist(Userlist userlist) {
         if (userlist == null) {
             throw new IllegalArgumentException("아이디 비밀번호를 전부 입력해주세요.");
         }
-
         return userlistRepository.save(userlist);
     }
 
@@ -99,5 +98,16 @@ public class UserService {
         }
 
         return userInfoRepository.save(userinfo);
+    }
+    public boolean checkUserId(String userId) {
+        if (userId == null) {
+            throw new IllegalArgumentException("정보가 입력되지 않았습니다.");
+        }
+        if(userInfoRepository.existsById(userId)){
+            throw new IllegalArgumentException("아이디가 중복되었습니다.");
+        }
+        else {
+            return true;
+        }
     }
 }

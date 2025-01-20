@@ -7,10 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 public class SignUpController {
@@ -19,10 +21,16 @@ public class SignUpController {
     UserService userService;
 
     @PostMapping("/signup")
-    public ResponseEntity<?> signupUser(
-            @RequestParam String userId,
-            @RequestParam String password,
-            @RequestParam String startDate) {
+    public ResponseEntity<?> signupUser(@RequestBody Map<String, String> requestData) {
+        String userId = requestData.get("userId");
+        String password = requestData.get("password");
+        String goalKg = requestData.get("goal");
+        String startDate = requestData.get("startDate");
+
+        LocalDate localDate = LocalDate.parse(startDate);
+        Float goal = Float.parseFloat(goalKg);
+
+        Map<String, String> response = new HashMap<>();
         try {
             Userlist newUser = new Userlist();
             Userinfo newUserinfo = new Userinfo();
@@ -30,17 +38,23 @@ public class SignUpController {
             newUser.setUserId(userId);
             newUser.setPasswd(password);
 
-            LocalDate localStartDate = LocalDate.parse(startDate);
             newUserinfo.setUserlist(newUser);
-            newUserinfo.setStartDate(localStartDate);
+            newUserinfo.setStartDate(localDate);
+            newUserinfo.setGoal(goal);
 
-            userService.createUserlist(newUser);
-            userService.createUserInfo(newUserinfo);
+            if (userService.checkUserId(userId)) {
+                userService.createUserInfo(newUserinfo);
 
-            return ResponseEntity.status(HttpStatus.CREATED).body("회원가입 완료");
+                response.put("message", "회원가입 완료");
+                response.put("success", "true");
+
+                return ResponseEntity.status(HttpStatus.CREATED).body(response);
+            }
         } catch (Exception e) {
             // 오류 발생 시 400 Bad Request
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: " + e.getMessage());
+            response.put("message", e.getMessage());
+            response.put("success", "false");
         }
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
     }
 }
