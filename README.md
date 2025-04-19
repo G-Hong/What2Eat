@@ -156,10 +156,10 @@ graph
 ## 🤝 Contributors
 
 - **Project Lead, AI Developer**: [Gina Hong](https://github.com/G-Hong)
-- **Frontend Developer**: [Frontend Dev Name](https://github.com/frontenddev)
-- **Backend Developer**: [Backend Dev Name](https://github.com/backenddev)
-- **AI Developer**: [AI Dev Name](https://github.com/aidev)
-- **Data Analyst**: [Data Analyst Name](https://github.com/dataanalyst)
+- **Frontend Developer**: [Youngseo Jeon](https://github.com/annajun1219), [Heejae Kwon](https://github.com/haileybaileyo)
+- **Backend Developer**: [Jinhee Lee](https://github.com/jinisim), [Suyeun Lee](https://github.com/suyeun0109)
+- **AI Developer**: [Suin Hong](https://github.com/Hongsuin)
+- **Data Analyst**: [Sua Song](https://github.com/totorobud)
 
 ## 🔍 Why Solar API?
 
